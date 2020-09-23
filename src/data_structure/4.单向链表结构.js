@@ -48,20 +48,6 @@ class LinkedList {
         this.length += 1
     }
 
-    toString() {
-        // 1. 定义当前项和返回结果变量
-        let current = this.head
-        let listString = ""
-
-        // 2. 循环拼接内容
-        while (current) {
-            listString += current.data + " "
-            current = current.next
-        }
-
-        return listString
-    }
-
     insert(position, data) {
         // 1. 进行越界判断,对于最大和最小的位置判断
         if (position < 0 || position > this.length) return false
@@ -160,7 +146,22 @@ class LinkedList {
     isEmpty() {
         return this.length === 0
     }
+
     size() {
         return this.length
+    }
+
+    toString() {
+        // 1. 定义当前项和返回结果变量
+        let current = this.head
+        let listString = ""
+
+        // 2. 循环拼接内容
+        while (current) {
+            listString += current.data + " "
+            current = current.next
+        }
+
+        return listString
     }
 }
