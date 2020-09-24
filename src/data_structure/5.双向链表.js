@@ -12,6 +12,8 @@
  *  toString(): 输出元素的值
  *  forwardString(): 返回从尾到头遍历的节点字符串形式
  *  backwardString(): 返回从头到尾遍历的节点字符串形式
+ *  getHead(): 获取第一个元素
+ *  getTail(): 获取最后一个元素
  *
  * @Author: Jie.Yang
  * @Date: 2020-09-22
@@ -178,6 +180,19 @@ class DoublyLinkedList {
         return current.data
     }
 
+    remove(data) {
+        let index = this.indexOf(data)
+        return this.removeAt(index)
+    }
+
+    isEmpty() {
+        return this.length === 0
+    }
+
+    size() {
+        return this.length
+    }
+
     toString() {
         return this.backwardString()
     }
@@ -206,13 +221,12 @@ class DoublyLinkedList {
         return resultString
     }
 
+    getHead() {
+        return this.head
+    }
+
+    getTail() {
+        return this.tail
+    }
+
 }
-
-let list = new DoublyLinkedList()
-
-list.append('aaa')
-list.append('bbb')
-list.append('ccc')
-list.append('ddd')
-list.append('eee')
-
