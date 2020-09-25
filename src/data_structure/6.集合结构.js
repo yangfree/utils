@@ -108,14 +108,3 @@ class Set {
         }
     }
 }
-
-let s1 = new Set()
-s1.add(('abc'))
-s1.add(('nbc'))
-s1.add(('cba'))
-s1.add(('ppp'))
-let s2 = new Set()
-s2.add('cba')
-s2.add('ppp')
-
-console.log(s2.subset(s1))
