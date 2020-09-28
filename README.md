@@ -10,4 +10,4 @@
 4. [单向链表结构](https://github.com/yangfree/utils/blob/master/src/data_structure/4.%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8%E7%BB%93%E6%9E%84.js)
 5. [双向链表结构](https://github.com/yangfree/utils/blob/master/src/data_structure/5.%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8.js)
 6. [集合结构](https://github.com/yangfree/utils/blob/master/src/data_structure/6.%E9%9B%86%E5%90%88%E7%BB%93%E6%9E%84.js)
-7. [哈希结构](https://github.com/yangfree/utils/blob/master/src/data_structure/6.哈希结构.js)
+7. [哈希结构](https://github.com/yangfree/utils/blob/master/src/data_structure/7.%E5%93%88%E5%B8%8C%E7%BB%93%E6%9E%84.js)
