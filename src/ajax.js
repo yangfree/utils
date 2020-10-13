@@ -11,13 +11,16 @@
  */
 
 import axios from "axios";
+import router from "../router"
+import store from "@/store/index"
+import { Toast } from "vant"
 
 class AjaxRequest {
     constructor() {
         this.baseURL =
             process.env.NODE_ENV === "development"
-                ? "http://127.0.0.1:8080/doctor/v2"
-                : "https://hdmp.hdzyhosp.com/doctor/v2";
+                ? "https://development.com"
+                : "https://production.com";
         this.timeout = 5000;
         this.queue = {};
     }
@@ -35,33 +38,82 @@ class AjaxRequest {
                 if (Object.keys(this.queue).length === 0) {
                     // TODO: something...
                 }
+                // token处理
+                const token = store.state.token
+                token && (config.headers.Authorization = token)
+                // 将每一次请求添加到队列,防止重复请求
                 this.queue[url] = url;
+
                 return config;
             },
             error => {
-                console.log(error);
+                return Promise.error(error)
             }
         );
         instance.interceptors.response.use(
             res => {
+                // 从队列中删除请求
                 delete this.queue[url];
                 if (Object.keys(this.queue).length === 0) {
                     // TODO: something...
                 }
-                let status = res.status.toString().slice(0, 1);
-                switch (status) {
-                    case "2":
-                        return res.data;
-                    case "3":
-                        return "资源重定向";
-                    case "4":
-                        return "客户端错误";
-                    case "5":
-                        return "服务端错误";
+
+                if (res.status === 200) {
+                    return Promise.resolve(res.data)
+                } else {
+                    return Promise.reject(res)
                 }
             },
             error => {
-                console.log(error);
+                // 对失败情况进行判断
+                if (error.response.status) {
+                    switch (error.response.status) {
+                        // 401 未登录
+                        case 401:
+                            router.replace({
+                                path: '/login',
+                                query: {
+                                    redirect: router.currentRoute.fullPath
+                                }
+                            })
+                            break;
+                        // 403
+                        case 403: // token过期
+                            Toast({
+                                message: "登录过期,请重新登录",
+                                duration: 1000,
+                                forbidClick: true
+                            });
+                            // 清除token
+                            localStorage.removeItem('token')
+                            store.commit('loginSuccess', null)
+                            // 跳转登录页面,并将要浏览的页面fullpath传过去,登录成功后跳转需要访问的页面
+                            setTimeout(() => {
+                                router.replace({
+                                    path: '/login',
+                                    query: {
+                                        redirect: router.currentRoute.fullPath
+                                    }
+                                })
+                            }, 1000)
+                            break;
+                        case 404: //请求不存在
+                            Toast({
+                                message: "网络请求不存在",
+                                duration: 1500,
+                                forbidClick: true
+                            });
+                            break;
+                        // 其他错误直接抛出提示
+                        default:
+                            Toast({
+                                message: error.response.data.message,
+                                duration: 1500,
+                                forbidClick: true
+                            })
+                    }
+                    return Promise.reject(error.response)
+                }
             }
         );
     }
