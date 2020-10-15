@@ -67,3 +67,5 @@ function passGame(nameList, number) {
     // 5. 返回所在原来列表中的下标
     return queue.front()
 }
+
+module.exports = Queue

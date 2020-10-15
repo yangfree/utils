@@ -55,4 +55,4 @@ class Dictionary {
 
 }
 
-module.exports = { Dictionary }
+module.exports = Dictionary 
