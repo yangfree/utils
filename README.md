@@ -12,3 +12,5 @@
 6. [集合结构](https://github.com/yangfree/utils/blob/master/src/data_structure/6.%E9%9B%86%E5%90%88%E7%BB%93%E6%9E%84.js)
 7. [哈希结构](https://github.com/yangfree/utils/blob/master/src/data_structure/7.%E5%93%88%E5%B8%8C%E7%BB%93%E6%9E%84.js)
 8. [二叉树搜索树](https://github.com/yangfree/utils/blob/master/src/data_structure/8.%E4%BA%8C%E6%90%9C%E7%B4%A2%E6%A0%91(BST).js)
+9. [字典](https://github.com/yangfree/utils/blob/master/src/data_structure/10.%E5%AD%97%E5%85%B8.js)
+10. [图结构](https://github.com/yangfree/utils/blob/master/src/data_structure/9.%E5%9B%BE%E7%BB%93%E6%9E%84.js)
