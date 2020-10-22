@@ -47,7 +47,7 @@ function objDeepCopy(source) {
 };
 
 /**
- * Soleve the problem: 判断js执行环境
+ * Resolve the problem: 判断js执行环境
  * @param: window
  * return String
  *
@@ -61,7 +61,7 @@ function isJavaScript() {
 }
 
 /**
- * Soleve the problem: 获取通用查询字符串参数
+ * Resolve the problem: 获取通用查询字符串参数
  *  @param: null
  *  return Object
  * 
