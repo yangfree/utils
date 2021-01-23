@@ -147,4 +147,34 @@ function getStr(str) {
     return { maxChar, maxNum }
 }
 
-
+/**
+ * Solve the problem: 数组套对象根据id去重，然后合并其他属性
+ *
+ * @param {arr} 需要处理的数组
+ * @return {arr}} 处理好的新书组
+ * 
+ * let arr = [{ price: 300, id: 1 }, { price: 350, id: 1 }, { price: 200, id: 2 }, { price: 250, id: 2 }, { price: 500, id: 3 }]
+ * return newArr = [{ price: [300, 350], id: 1 },{ price: [200, 250], id: 2 },{ price: 500, id: 3 }]
+ */
+function mergeArr(arr) {
+    let newArr = [];
+    arr.forEach(item => {
+        if (newArr.length > 0) {
+            let filtervalue = newArr.filter(v => {
+                return v.id === item.id;
+            })
+            if (filtervalue.length > 0) {
+                newArr.forEach(n => {
+                    if (n.id === filtervalue[0].id) {
+                        n.price = [filtervalue[0].price, item.price]
+                    }
+                })
+            } else {
+                newArr.push(item)
+            }
+        } else {
+            newArr.push(item)
+        }
+    })
+    return newArr;
+}
